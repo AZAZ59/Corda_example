@@ -35,6 +35,15 @@ public class IssuePaymentFlow extends FlowLogic<Void> {
      */
     private final ProgressTracker progressTracker = new ProgressTracker();
 
+    public IssuePaymentFlow(PaymentState state) {
+        this.accountNumber = state.getAccountNumber();
+        this.countInCents = state.getCountInCents();
+        this.date = state.getDate();
+        this.idNumber = state.getIdNumber();
+        this.type = state.getType();
+        this.otherParty= state.getBorrower();
+    }
+
     public IssuePaymentFlow(String accountNumber, Integer countInCents, LocalDate date, String idNumber, Type type, Party otherParty) {
         this.accountNumber = accountNumber;
         this.countInCents = countInCents;
