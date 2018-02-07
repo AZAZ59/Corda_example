@@ -72,7 +72,7 @@ dependencies {
     // Specify your CorDapp's dependencies below, including dependent CorDapps.
     // We've defined Cash as a dependent CorDapp as an example.
     cordapp project(":cordapp")
-    cordapp project(":cordapp-contracts-states")
+//    cordapp project(":cordapp-contracts-states")
     cordapp "net.corda:corda-finance:$corda_release_version"
 }
 
@@ -81,7 +81,7 @@ task integrationTest(type: Test, dependsOn: []) {
     classpath = sourceSets.integrationTest.runtimeClasspath
 }
 
-tasks.withType(JavaCompile) {
+tasks.withType( JavaCompile) {
     options.compilerArgs << "-parameters" // Required for passing named arguments to your flow via the shell.
 }
 
@@ -94,7 +94,6 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
         p2pPort 10002
         rpcPort 10003
         cordapps = [
-                "$project.group:cordapp-contracts-states:$project.version",
                 "$project.group:cordapp:$project.version",
                 "net.corda:corda-finance:$corda_release_version"
         ]
@@ -106,7 +105,6 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
         rpcPort 10006
         webPort 10007
         cordapps = [
-                "$project.group:cordapp-contracts-states:$project.version",
                 "$project.group:cordapp:$project.version",
                 "net.corda:corda-finance:$corda_release_version"
         ]
@@ -119,7 +117,6 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
         rpcPort 10009
         webPort 10010
         cordapps = [
-                "$project.group:cordapp-contracts-states:$project.version",
                 "$project.group:cordapp:$project.version",
                 "net.corda:corda-finance:$corda_release_version"
         ]
